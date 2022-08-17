@@ -13,7 +13,7 @@ pipeline {
     }
     stage('Push-img') {
       steps {
-        withCredentials([usernameColonPassword(credentialsId: 'docker-pwd', variable: 'password')]) {
+        withCredentials([string(credentialsId: 'docker-pwd', variable: 'password')]) {
           sh 'docker login -u "tbancila" -p "$password" docker.io'
         }
         sh 'docker push tbancila/tali-app:latest'
