@@ -1,6 +1,5 @@
 pipeline {
   agent any
-    //docker { image 'node:12-alpine' }
   /*environment {
     DOCKER_PWD = credentials('docker-pwd')
   }*/
