@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh 'pwd'
+        sh 'who'
         sh 'ls -la'
         sh 'ssh -i "./Tali-ssh.pem" ec2-user@10.0.3.239 "docker login -u "tbancila" -p "SQAPmjyu20" docker.io"' 
         sh 'ssh -i "./Tali-ssh.pem" ec2-user@10.0.3.239 "docker rm -f app"' 
