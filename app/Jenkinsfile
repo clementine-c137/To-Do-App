@@ -19,5 +19,12 @@ pipeline {
         sh 'docker push tbancila/tali-app:latest'
       }
     }
+    stage('Deploy') {
+      steps {
+        sh 'ssh -i "Tali-ssh.pem" ec2-user@ec2-3.82.160.92.compute-1.amazonaws.com "docker login -u "tbancila" -p "SQAPmjyu20" docker.io"' 
+        sh 'ssh -i "Tali-ssh.pem" ec2-user@ec2-3.82.160.92.compute-1.amazonaws.com "docker rm -f app"' 
+        sh 'ssh -i "Tali-ssh.pem" ec2-user@ec2-3.82.160.92.compute-1.amazonaws.com "docker run --name app -d -p 3000:3000 tbancila/tali-app:latest"' 
+      }
+    }
   }
 }
