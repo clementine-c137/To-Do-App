@@ -1,8 +1,9 @@
 pipeline {
   agent any
     //docker { image 'node:12-alpine' }
-    
-  
+  environment {
+    DOCKER_PWD = credentials('docker-pwd')
+  }
   stages {
     stage('Build-img') {
       steps {
@@ -13,8 +14,8 @@ pipeline {
     }
     stage('Push-img') {
       steps {
-        withCredentials([string(credentialsId: 'docker-pwd', variable: 'password')]) {
-          sh 'docker login -u "tbancila" -p "$password" docker.io'
+        //withCredentials([string(credentialsId: 'docker-pwd', variable: 'password')]) {
+          sh 'docker login -u "tbancila" -p "$DOCKER_PWD" docker.io'
         }
         sh 'docker push tbancila/tali-app:latest'
       }
