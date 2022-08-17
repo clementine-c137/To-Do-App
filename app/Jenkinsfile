@@ -1,11 +1,12 @@
 pipeline {
-  agent {
+  /*agent {
     docker { image 'node:12-alpine' }
-  }
+  }*/
   stages {
     stage('Build') {
       steps {
-        sh 'node --version'
+        sh 'ls -l'
+        sh 'pwd'
       }
     }
   }
