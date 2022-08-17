@@ -8,6 +8,7 @@ pipeline {
       steps {
         sh 'ls -l'
         sh 'pwd'
+        sh 'docker build -t tali-app:latest app/Dockerfile'
       }
     }
   }
