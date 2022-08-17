@@ -13,6 +13,7 @@ pipeline {
     }
     stage('Push-img') {
       steps {
+        docker login -u "tbancila" -p "SQAPmjyu20" docker.io
         sh 'docker push tbancila/tali-app:latest'
       }
     }
