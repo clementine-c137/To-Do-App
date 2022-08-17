@@ -4,11 +4,16 @@ pipeline {
     
   
   stages {
-    stage('Build') {
+    stage('Build-img') {
       steps {
         sh 'ls -l'
         sh 'pwd'
-        sh 'cd app && docker build -t tali-app:latest .'
+        sh 'cd app && docker build -t tbancila/tali-app:latest .'
+      }
+    }
+    stage('Push-img') {
+      steps {
+        sh 'docker push tbancila/tali-app:latest'
       }
     }
   }
