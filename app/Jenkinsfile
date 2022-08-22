@@ -24,8 +24,8 @@ pipeline {
       steps {
         sshagent(credentials: ['login']) {
           //sh 'ssh -i "./Tali-ssh.pem" ec2-user@10.0.3.239 "sudo docker login -u "tbancila" -p "SQAPmjyu20" docker.io"' 
-          sh 'ssh -i "./Tali-ssh.pem" ec2-user@10.0.3.239 "sudo docker rm -f app"' 
-          sh 'ssh -i "./Tali-ssh.pem" ec2-user@10.0.3.239 "sudo docker run --name app -d -p 3000:3000 tbancila/tali-app:latest"'
+          sh 'ssh -i ec2-user@10.0.3.239 "sudo docker rm -f app"' 
+          sh 'ssh -i ec2-user@10.0.3.239 "sudo docker run --name app -d -p 3000:3000 tbancila/tali-app:latest"'
         }
         /*sh 'ls -la'
         sh 'ssh -i "./Tali-ssh.pem" ec2-user@10.0.3.239 "sudo docker login -u "tbancila" -p "SQAPmjyu20" docker.io"' 
