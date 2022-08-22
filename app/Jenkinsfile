@@ -23,9 +23,7 @@ pipeline {
     stage('Deploy') {
       steps {
         sshagent(credentials: ['login']) {
-          sh 'eval "$(ssh-agent -s)"'
-          sh 'ssh-add ~/.ssh/id_personal'
-          //sh 'ssh -i "./Tali-ssh.pem" ec2-user@10.0.3.239 "sudo docker login -u "tbancila" -p "SQAPmjyu20" docker.io"' 
+          sh 'ssh -o StrictHostKeyChecking=no ec2-user@10.0.3.239 "sudo docker login -u ${DOCKER_CRED_USR} -p ${DOCKER_CRED_PSW} docker.io"' 
           sh 'ssh -o StrictHostKeyChecking=no ec2-user@10.0.3.239 "sudo docker rm -f app"' 
           sh 'ssh -o StrictHostKeyChecking=no ec2-user@10.0.3.239 "sudo docker run --name app -d -p 3000:3000 tbancila/tali-app:latest"'
         }
