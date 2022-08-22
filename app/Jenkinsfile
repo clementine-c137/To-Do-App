@@ -23,6 +23,7 @@ pipeline {
         sshagent(credentials: ['login']) {
           sh 'ssh -o StrictHostKeyChecking=no ec2-user@10.0.3.239 "sudo docker login -u ${DOCKER_CRED_USR} -p ${DOCKER_CRED_PSW} docker.io"' 
           sh 'ssh -o StrictHostKeyChecking=no ec2-user@10.0.3.239 "sudo docker rm -f app"' 
+          sh 'ssh -o StrictHostKeyChecking=no ec2-user@10.0.3.239 "sudo docker pull tbancila/tali-app:latest"'
           sh 'ssh -o StrictHostKeyChecking=no ec2-user@10.0.3.239 "sudo docker run --name app -d -p 3000:3000 tbancila/tali-app:latest"'
         }
         /*sh 'ls -la'
